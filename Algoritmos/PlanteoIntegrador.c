@@ -33,7 +33,6 @@ void program () {
         if ((stock_caja<50)) {
             printf("\033[1;31m!!! ADVERTENCIA !!!\nQuedan 50 cajas para embalar.\033[0m\n\n");
         }
-        system ("color 0a");
         printf ("Bienvenido!\nSeleccione que pedido desea hacer:\n\n");
         printf ("Dia: %d\n", i);
         printf ("Stock Cajas: %d\n\n", stock_caja);
@@ -55,10 +54,9 @@ void program () {
             stock_bot_a = stock_bot_a - 6*compra;
             stock_caja = stock_caja - compra;
             if ((stock_bot_a = 0)) {
-                printf ("Error - No se puede realizar la compra debido a la falta de stock de botellas\n");
-                printf ("Cerrando Operaciones - Pasando al siguiente dia >>>");
+                printf ("\033[1;31mError - No se puede realizar la compra debido a la falta de stock de botellas\n\033[0m");
+                printf ("\033[1;31mCerrando Operaciones - Pasando al siguiente dia >>>\033[0m");
                 getch();
-                i++;
                 program();
             } else {
                 back();
@@ -75,10 +73,9 @@ void program () {
             stock_bot_b = stock_bot_b - 6*compra;
             stock_caja = stock_caja - compra;
             if ((stock_bot_b = 0)) {
-                printf ("Error - No se puede realizar la compra debido a la falta de stock de botellas\n");
-                printf ("Cerrando Operaciones - Pasando al siguiente dia >>>");
+                printf ("\033[1;31mError - No se puede realizar la compra debido a la falta de stock de botellas\n\033[0m");
+                printf ("\033[1;31mCerrando Operaciones - Pasando al siguiente dia >>>\033[0m");
                 getch();
-                i++;
                 program();
             } else {
                 back();
@@ -92,13 +89,12 @@ void program () {
             printf ("(Recuerde que las cajas contienen 6 botellas del tipo que haya seleccionado)\n");
             printf ("Cajas: ");
             scanf ("%d", &compra);
-            stock_bot_c = stock_bot_c - 6;
-            stock_caja = stock_caja - 1;
+            stock_bot_c = stock_bot_c - 6*compra;
+            stock_caja = stock_caja - compra;
             if ((stock_bot_c = 0)) {
-                printf ("Error - No se puede realizar la compra debido a la falta de stock de botellas\n");
-                printf ("Cerrando Operaciones - Pasando al siguiente dia >>>");
+                printf ("\033[1;31mError - No se puede realizar la compra debido a la falta de stock de botellas\n\033[0m");
+                printf ("\033[1;31mCerrando Operaciones - Pasando al siguiente dia >>>\033[0m");
                 getch();
-                i++;
                 program();
             } else {
                 back();

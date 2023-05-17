@@ -23,7 +23,7 @@ int main () {
         printf ("Nota: ");
         scanf ("%f", &notas);
         total = total + notas;
-        if (notas>4) {
+        if (notas>=4) {
             ap++;       // La estructura de decision If verifica que si los valores son mayores a 4, 
         } else {        // se le sume a la variable 'ap'. Sino, se le suma a la variable 'desap'
             desap++;

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 int covid = 0;
 int p_at = 0;
@@ -9,8 +10,111 @@ int p_inter = 0;
 float p_prom = 0;
 int  p_ti = 0;
 int i;
+int desb = 0;
+int sdes = 0;
 char des;
 
+void desicion() {
+    system ("cls");
+        des = getchar();
+        p_at++;
+        printf ("Lamentamos su situacion.\nPor favor, indique el tipo de atencion que desea: \n");
+        printf ("A) Asintomatico\nD) Domiciliario\nI) Internacion\nT) Terapia Intensiva\n");
+        printf ("Opcion: ");
+        scanf ("%c", &des);
+
+        switch (des) {
+        case 'A':
+            p_asin++;
+            system ("cls");
+            printf ("Usted ha elegido el tratamiento Asintomatico.\n");
+            printf ("Su decision sera ingresada en nuestra base de datos.\n");
+            printf ("Desea ingresar otro paciente?\n");
+            printf ("1) Si\n2) No\n");
+            printf ("Res: ");
+            scanf ("%d", &sdes);
+            if (sdes == 1) {
+                main();
+            } else {
+                system ("cls");
+                final();
+                }
+            break;
+        
+        case 'D':
+            p_dom++;
+            system ("cls");
+            printf ("Usted ha elegido el tratamiento Domiciliario.\n");
+            printf ("Su decision sera ingresada en nuestra base de datos.\n");
+            printf ("Desea ingresar otro paciente?\n");
+            printf ("1) Si\n2) No\n");
+            printf ("Res: ");
+            scanf ("%d", &sdes);
+            if (sdes == 1) {
+                main();
+            } else {
+                system ("cls");
+                final();
+                }
+            break;
+        
+        case 'I':
+            p_inter++;
+            system ("cls");
+            printf ("Usted ha elegido la Internacion.\n");
+            printf ("Su decision sera ingresada en nuestra base de datos.\n");
+            printf ("Desea ingresar otro paciente?\n");
+            printf ("1) Si\n2) No\n");
+            printf ("Res: ");
+            scanf ("%d", &sdes);
+            if (sdes == 1) {
+                main();
+            } else {
+                system ("cls");
+                final();
+                }
+            break;
+        
+        case 'T':
+            p_ti++;
+            system ("cls");
+            printf ("Usted ha elegido el tratamiento de Terapia Intensiva.\n");
+            printf ("Su decision sera ingresada en nuestra base de datos.\n");
+            printf ("Desea ingresar otro paciente?\n");
+            printf ("1) Si\n2) No\n");
+            printf ("Res: ");
+            scanf ("%d", &sdes);
+            if (sdes == 1) {
+                main();
+            } else {
+                system ("cls");
+                final();
+                }
+            break;
+
+        default:
+            system ("cls");
+            printf ("Ingrese un valor permitido >:(\n");
+            printf ("Presione cualquier tecla para volver...");
+            p_at--;
+            getch();
+            desicion();
+            break;
+        }
+}
+
+void final () {
+        p_prom = (p_ti * 100) / p_at;
+        printf ("==============================================================\n");
+        printf ("Cantidad de pacientes atendidos: %d\n", p_at);
+        printf ("Porcentae de pacientes en Terapia Intensiva: %c%.2f\n",37 , p_prom);
+        printf ("Cantidad de pacientes en Tratamiento Asintomatico: %d\n", p_asin);
+        printf ("Cantidad de pacientes en Tratamiento domiciliario: %d\n", p_dom);
+        printf ("Cantidad de pacientes en Tnternacion: %d\n", p_inter);
+        printf ("Cantidad de pacientes en Tratamiento de Terapia Intensiva:  %d\n", p_ti);
+        printf ("==============================================================\n");
+        exit (0);
+ }
 int main () {
     system ("color 0a");
     system ("cls");
@@ -20,46 +124,20 @@ int main () {
     printf ("Res: ");
     scanf ("%d", &covid);
 
-    if (covid = 1) {
-        p_at++;
-        system ("cls");
-        printf ("Lamentamos su situacion\nPor favor, indique el tipo de atencion que desea: \n");
-        printf ("A) Asintomatico\nD) Domiciliario\nI) Internacion\nT) Terapia Intensiva");
-        scanf ("%c", &des);
-
-        switch (des) {
-        case 'A':
-            p_asin++;
-            printf ("Usted ha elegido el tratamiento Asintomatico.");
-            break;
-        
-        case 'D':
-            p_dom++;
-            printf ("Usted ha elegido el tratamiento Domiciliario.");
-            break;
-        
-        case 'I':
-            p_inter++;
-            printf ("Usted ha elegido la Internacion.");
-            break;
-        
-        case 'T':
-            p_ti++;
-            printf ("Usted ha elegido el tratamiento de Terapia Intensiva.");
-            break;
-        
-        case 'X':
-            p_prom = (p_ti * 100) / p_at;
-            printf ("========================\n");
-            printf ("Cantidad de pacientes atendidos: %d\n", p_at);
-            printf ("Porcentae de pacientes en Terapia Intensiva: %.2f\n", p_prom);
-            printf ("Cantidad de pacientes atendidos: %d\n", p_at); // ?????????????? me falta camviar este
-        default:
-            printf ("Ingrese un valor permitido >:(");
-            break;
-        }
+    if (covid == 1) {
+        desicion();
     }
-    else {printf ("Salud!\nPresione una tecla para continuar...");}
+    else {
+        system ("cls");
+        printf ("Salud!\nDesea ingresar otro paciente?\n");
+        printf ("1) Si\n2) No\n");
+        printf ("Res: ");
+        scanf ("%d", &desb);
+
+        if (desb == 1) {
+            main();
+        } else {final();}
+        }
     }
     return ('x');
 }

@@ -14,6 +14,10 @@ int desb = 0;
 int sdes = 0;
 char des;
 
+// Para Agus:
+//          AY BLDA SAMEEEEEEEEEEEE
+//                          atte: Cruz Lucas
+
 void desicion() {
     system ("cls");
         des = getchar();
@@ -110,7 +114,7 @@ void final () {
         printf ("Porcentae de pacientes en Terapia Intensiva: %c%.2f\n",37 , p_prom);
         printf ("Cantidad de pacientes en Tratamiento Asintomatico: %d\n", p_asin);
         printf ("Cantidad de pacientes en Tratamiento domiciliario: %d\n", p_dom);
-        printf ("Cantidad de pacientes en Tnternacion: %d\n", p_inter);
+        printf ("Cantidad de pacientes en Internacion: %d\n", p_inter);
         printf ("Cantidad de pacientes en Tratamiento de Terapia Intensiva:  %d\n", p_ti);
         printf ("==============================================================\n");
         exit (0);

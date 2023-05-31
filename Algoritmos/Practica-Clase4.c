@@ -7,6 +7,7 @@ float res = 0;
 int des = 0;
 
 int main () {
+    system("clear");
     printf("==== Calculadora ====\n");
     printf ("Ingrese el primer valor: \n");
     scanf ("%f", &n1);

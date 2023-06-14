@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "TP2-E4.C": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "enabled"
 }

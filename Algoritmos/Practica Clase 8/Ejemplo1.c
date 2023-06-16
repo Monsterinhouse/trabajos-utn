@@ -6,10 +6,10 @@ char n_vendedor[11][35];
 float v_vendedor[11];
 float monto = 0;
 float monto_max = 0;
-float vendedor_max = 0;
+int vendedor_max = 0;
 float venta_total = 0;
 int sum = 0;
-int i, x, des;
+int i, x, f, des, des2;
 
 void RealizarVenta() {
     system ("cls");
@@ -28,12 +28,13 @@ void RealizarVenta() {
     
     if (monto > monto_max) {
         monto_max += monto;
-    }
-    else if (v_vendedor[x] > monto_max)
-    {
-        monto_max = v_vendedor[x];
         vendedor_max = x;
     }
+    // else if (v_vendedor[x] > monto_max)
+    // {
+    //     monto_max += v_vendedor[x];
+
+    // }
     system ("cls");
     printf ("Se ha añadido la venta al vendedor N%c %d\n", 248, x);
     system ("pause");
@@ -56,11 +57,23 @@ void MostrarVentas() {
 
 void CerrarDia() {
     system ("cls");
-    for (x = 0; x >= 11; x++) {
+    for (x = 0; x < 11; x++) {
         sum = sum + v_vendedor[x];
-        printf ("Ventas del vendedor N%c (%s): ", 248, n_vendedor[x]);
+        printf ("Ventas del vendedor N%c%d (%s): $%.2f\n", 248, x, n_vendedor[x], v_vendedor[x]);
     }
-    printf ("");
+    printf ("(+) El empleado que mas ventas realizo fue %s (N%c%d), con $%.2f ventas\n", n_vendedor[vendedor_max], 248, vendedor_max, v_vendedor[vendedor_max]);
+    printf ("(+) El monto total de ventas fue: $%.2f\n", monto_max);
+    system ("pause");
+    system ("cls");
+    printf ("Desea ingresar otros empleados?\n");
+    printf ("1)Si\n2)No\n");
+    printf ("Res: ");
+    scanf ("%d", &des2);
+
+    if (des2 == 1) {
+        main();
+    } else {exit(0);}
+
 }
 
 void Menu() {

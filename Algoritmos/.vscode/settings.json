@@ -32,6 +32,7 @@
   ],
   "C_Cpp_Runner.useAddressSanitizer": false,
   "files.associations": {
-    "TP2-E4.C": "cpp"
+    "TP2-E4.C": "cpp",
+    "stdlib.h": "c"
   }
 }

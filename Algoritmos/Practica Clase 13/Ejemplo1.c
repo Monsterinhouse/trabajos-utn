@@ -14,7 +14,7 @@ B) Simular la entrada de nuevos libros a la librería o la reposición de los ya
 
 struct libro {
   char nombre[30];
-  int codigo[8];
+  int codigo;
   // char autor[30];
   // char editorial[30];
   // float precio;
@@ -53,15 +53,16 @@ int main() {
 do {
    printf("1) Insertar un libro\n");
    printf("2) Reponer un libro\n");
-   printf("3) Imprimir librosv");
+   printf("3) Imprimir libros\n");
    printf("0) Salir\n");
+   printf ("Res: ");
    scanf("%d", &opcion);
 
    switch(opcion) {
     case 1: {
         struct libro tempLibro;
-        printf("Ingrese el nombre del libro: ");
-        scanf("%s", &tempLibro.nombre);
+        // printf("Ingrese el nombre del libro: ");
+        // scanf("%s", &tempLibro.nombre);
         printf("Ingrese el codigo del libro: ");
         scanf("%d", &tempLibro.codigo);
         printf("Ingrese el stock del libro: ");

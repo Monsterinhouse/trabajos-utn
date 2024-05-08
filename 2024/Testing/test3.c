@@ -11,7 +11,7 @@ int main () {
     printf ("Ingrese su nombre: \n");
     gets (nya);
     // scanf ("%s", nombre);
-    // printf ("Ingrese su apellido: \n");
+    // printf ("Ingrese su apellido: \n");-
     // scanf ("%s", apellido);
     printf ("Ingrese el sueldo basico: \n");
     scanf ("%f", &sb);

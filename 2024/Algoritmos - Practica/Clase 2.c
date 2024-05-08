@@ -41,7 +41,7 @@ int main () {
     }
     else {}
 
-    printf ("Ingrese el costo de ausencia: ");
+    printf ("Ingrese el costo de ausencia: $");
     scanf ("%f", &p_aus);
     printf ("Ingrese la cantidad de ausentes: ");
     scanf ("%d", &aus);

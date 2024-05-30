@@ -81,6 +81,8 @@ void volver() {
     }
 
     else {
+        system ("cls");
+        printf ("BING CHILLING");
         exit(0);
     }
 
@@ -123,7 +125,9 @@ int main () {
         break;
 
     default:
-        printf ("Ingrese una opcion valida!");
+        system ("cls");
+        printf ("Ingrese una opcion valida!\n");
+        system ("pause");
         main();
         break;
     }

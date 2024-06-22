@@ -23,7 +23,7 @@ float masVentas () {
 
 void resumenDia () {
     printf ("=== SOBRE EL DIA ===");
-    printf ("printf )";
+    printf ("Nro Vendedor (Mas Ventas): %d");
 }
 
 int main () {

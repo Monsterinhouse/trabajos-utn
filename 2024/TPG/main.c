@@ -35,16 +35,23 @@ Se pide informar por semana:
 */
 
 // Contadores
-int kilosDia = 0, bolsasDia = 0, clienteFrec = 0, porcentajeClienteFrec, clientesDia = 0, ventaBolsaDia = 0, clientesTot = 0; // Contadores Diarios temporales
-int cliFrecDia0, cliFrecDia1, cliFrecDia2, cliFrecDia3, cliFrecDia4, cliFrecDia5, cliFrecDia6, bolDia0, bolDia1, bolDia2, bolDia3, bolDia4, bolDia5, bolDia6; // Contadores Dias y Bolsas Semanales
-float consultaMedicaDia, peluqueriaCaninaDia, ventaAlimentoDia, extrasDia, descClienteFrec, totalReciboDia; // Contadores diarios temporales (Servicios)
-float consultaMedicaDiaTot ,peluqueriaCaninaDiaTot, ventaAlimentoDiaTot, extrasDiaTot; // Contadores Totales de servicios
-float consultaMedicaSem, peluqueriaCaninaSem, ventaAlimentoSem, extrasSem; // Contadores Semanales
-float contRubroInfoDia, rubroSemanaA, rubroSemanaB; // Contadores para informe diario y semanal
+
+// Contadores Diarios temporales
+int kilosDia = 0, bolsasDia = 0, clienteFrec = 0, porcentajeClienteFrec, clientesDia = 0, ventaBolsaDia = 0, clientesTot = 0; 
+// Contadores Dias y Bolsas Semanales
+int cliFrecDia0, cliFrecDia1, cliFrecDia2, cliFrecDia3, cliFrecDia4, cliFrecDia5, cliFrecDia6, bolDia0, bolDia1, bolDia2, bolDia3, bolDia4, bolDia5, bolDia6;
+// Contadores diarios temporales (Servicios)
+float consultaMedicaDia, peluqueriaCaninaDia, ventaAlimentoDia, extrasDia, descClienteFrec, totalReciboDia; 
+// Contadores Totales de servicios
+float consultaMedicaDiaTot ,peluqueriaCaninaDiaTot, ventaAlimentoDiaTot, extrasDiaTot; 
+// Contadores Semanales
+float consultaMedicaSem, peluqueriaCaninaSem, ventaAlimentoSem, extrasSem; 
+// Contadores para informe diario y semanal
+float contRubroInfoDia, rubroSemanaA, rubroSemanaB; 
 
 // Variables
-int i, j = 0, res, aux, aux2; // Variables auxiliares enteras 
-float aux3 = 0, aux4 = 0, aux5 = 0, aux6 = 0;
+int i, j = 0, res, aux, auxb, aux2; // Variables auxiliares enteras 
+float aux3 = 0, aux4 = 0, aux5 = 0, aux6 = 0; // Variables Auxiliares flotantes
 
 
 // Funciones
@@ -66,7 +73,7 @@ void informeDia(int bolsasDia, int clientesFrecuentes) {
 
     // Cuenta de porcentaje para saber que porcentaje representa la peluqueria canina sobre el total
     aux3 = (consultaMedicaDiaTot + peluqueriaCaninaDiaTot + ventaAlimentoDiaTot + extrasDiaTot);
-    aux4 = (aux3 * peluqueriaCaninaDiaTot) / 100;
+    aux4 = (aux3 / peluqueriaCaninaDiaTot) * 100;
 
     // Cuenta de porcentaje para saber que porcentaje representa los clientes frecuentes sobre los clientes totales
     aux5 = (clienteFrec / clientesDia) * 100;
@@ -76,7 +83,9 @@ void informeDia(int bolsasDia, int clientesFrecuentes) {
     printf ("Porcentaje de peluqueria canina sobre el total: %.2f\n", aux4);
     printf ("Clientes frecuentes en el dia: %d\n", clientesFrecuentes);
     printf ("Cantidad de bolsas vendidas en el dia: %d\n", bolsasDia);
-    aux3 = 0, aux4 = 0, aux5 = 0;
+    aux3 = 0;
+    aux4 = 0; 
+    aux5 = 0;
     system ("pause");
 
 }
@@ -93,12 +102,13 @@ void informeSemanal(float rubroMax1, float rubroMax2) {
     }
     else if (rubroMax1 < ventaAlimentoSem) {
         rubroMax2 = rubroMax1;
-        rubroMax1 = peluqueriaCaninaSem;
+        rubroMax1 = ventaAlimentoSem;
     }
     else if (rubroMax1 < extrasSem) {
         rubroMax2 = rubroMax1;
-        rubroMax1 = peluqueriaCaninaSem;
+        rubroMax1 = extrasSem;
     }
+
 
     // Operacion para saber el porcentaje de la peluqueria canina sobre el total semanal
     aux3 = (consultaMedicaSem + peluqueriaCaninaSem + ventaAlimentoSem + extrasSem);
@@ -131,7 +141,8 @@ void informeSemanal(float rubroMax1, float rubroMax2) {
     system ("pause");
 }
 
-void clienteFrecuente() {   // Procedimiento que pregunta y almacena el dato de cliente frecuente
+// Procedimiento que pregunta y almacena el dato de cliente frecuente
+void clienteFrecuente() { 
     system ("cls");
     printf ("Es un cliente frecuente?\n");
     printf ("1) Si\n2) No\nRes: ");
@@ -211,7 +222,7 @@ void recibo() {     // Procedimiento que realiza las operaciones e imprime el re
         }
         else {
             totalReciboDia += peluqueriaCaninaDia;
-            consultaMedicaDiaTot += totalReciboDia;
+            peluqueriaCaninaDiaTot += totalReciboDia;
         }
         peluqueriaCaninaDia = 0;
         clientesDia++;
@@ -264,10 +275,16 @@ void recibo() {     // Procedimiento que realiza las operaciones e imprime el re
     menu(i);
 }
 
-void contadorClientesBolsasDia(int contadorDia) {   // Procedimiento que asigna los contadores diarios a variables acumuladoras
-    switch (contadorDia)    {                       // globales para que sean utilizadas en otro momento (por ejemplo, el Informe Semanal)
-    case 0:                                         // Dicho procedimiento toma como parametro el contador de repeticion de la estructura 'for'
-        cliFrecDia0 = clienteFrec;                  // del procedimiento principal, para utilizarlo como decision del 'switch'
+/*
+Procedimiento que asigna los contadores diarios a variables acumuladoras
+globales para que sean utilizadas en otro momento (por ejemplo, el Informe Semanal).
+Dicho procedimiento toma como parametro el contador de repeticion de la estructura 'for'
+del procedimiento principal, para utilizarlo como decision del 'switch'
+*/
+void contadorClientesBolsasDia(int contadorDia) {   
+    switch (contadorDia)    {                       
+    case 0:
+        cliFrecDia0 = clienteFrec;      
         clientesTot += cliFrecDia0;
         bolDia0 = ventaBolsaDia;
         break;
@@ -283,7 +300,7 @@ void contadorClientesBolsasDia(int contadorDia) {   // Procedimiento que asigna 
         clientesTot += cliFrecDia2;
         bolDia2 = ventaBolsaDia;
         break;
-    
+    // etc, etc...
     case 3:
         cliFrecDia3 = clienteFrec;
         clientesTot += cliFrecDia3;
@@ -314,14 +331,17 @@ void contadorClientesBolsasDia(int contadorDia) {   // Procedimiento que asigna 
     }
 }
 
-void menu(int contador) {   // Procedimiento principal; ejecuta el programa entero
+// Procedimiento principal; ejecuta el programa entero
+void menu(int contador) {   
     system ("cls");
     printf ("===== VETERINARIA =====\n");
     printf ("Dia: %d\n", contador);
     printf ("Clientes: %d\n", clientesDia);
     printf ("Elija una opcion: \n");
-    printf ("1) Consulta Medica\n2) Peluqueria Canina\n3) Venta de Alimento\n4) Cerrar Dia\n5) Salir\nRes: ");  // Menu principal del programa
-    scanf ("%d", &res);                                                                                         // La instruccion '\n' separa el texto por renglon
+    // Menu principal del programa
+    // La instruccion '\n' separa el texto por renglon
+    printf ("1) Consulta Medica\n2) Peluqueria Canina\n3) Venta de Alimento\n4) Cerrar Dia\n5) Salir\nRes: ");  
+    scanf ("%d", &res);                                                                                         
     switch (res) {
     case 1:
         system ("cls");
@@ -342,6 +362,13 @@ void menu(int contador) {   // Procedimiento principal; ejecuta el programa ente
         break;
     
     case 3:
+        if (kilosDia == 0) {
+            system ("cls");
+            printf ("No hay suficiente alimento para vender!\n");
+            printf ("Perdone las molestias!\n");
+            system ("pause");
+            menu(i);
+        }
         system ("cls");
         printf ("Kg Actuales: %d KG\n", kilosDia);
         printf ("Bolsas Actuales: %d\n", bolsasDia);
@@ -349,8 +376,9 @@ void menu(int contador) {   // Procedimiento principal; ejecuta el programa ente
         scanf ("%d", &res);
         ventaAlimentoDia = (res * 2500);
         kilosDia = kilosDia - res;
-        aux = (res / 20);
-        bolsasDia = bolsasDia - round(aux);
+        aux = (res/ 20);
+        auxb = aux;
+        bolsasDia = bolsasDia - round(auxb);
         aux2 = bolsasDia;
         ventaBolsaDia++;
         clienteFrecuente();
@@ -360,7 +388,7 @@ void menu(int contador) {   // Procedimiento principal; ejecuta el programa ente
     case 4:
         system ("cls");
         contadorClientesBolsasDia(contador);
-        informeDia(ventaBolsaDia, clienteFrec);     // Llamado al procedimiento 'informeDia' pasando como parametro las ventas de bolsas en el dia
+        informeDia(round(auxb), clienteFrec);     // Llamado al procedimiento 'informeDia' pasando como parametro las ventas de bolsas en el dia
         clientesDia = 0;                            // y los clientes frecuentes
         clienteFrec = 0;
         break;

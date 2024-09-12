@@ -9,7 +9,7 @@ Nodo;
 
 struct nodo *head = NULL;
 
-void agregarNodo(int data) {
+void agregarNodoPrincipio(int data) {
 
     struct nodo *nuevo = NULL;
 
@@ -28,6 +28,22 @@ void agregarNodo(int data) {
     return nuevo;
 }
 
+void agregarNodoFinal(struct Nodo **L,int data) {
+    
+    struct nodo *nuevo = NULL;
+    struct nodo *cor = *L;
+
+    while (cor != NULL) {
+        cor = cor->psig;
+    }
+    if (cor == NULL) {
+        struct nodo *nuevo = malloc(sizeof(Nodo));
+        nuevo->data = data;
+        cor = nuevo;
+        nuevo->psig = NULL;
+    }
+}
+
 void imprimirLista() {
     system ("cls");
     struct nodo *cor = head;
@@ -44,8 +60,10 @@ int main () {
     while (res != 3) {
         system ("cls");
         printf ("===== MENU =====\n");
-        printf ("1. Agregar Nodo\n");
-        printf ("2. Imprimir Lista\n");
+        printf ("1. Agregar Nodo al principio\n");
+        printf ("2. Agregar nodo al final");
+        printf ("3. Imprimir Lista\n");
+        printf ("4. Salir y Liberar Lista\n");
         printf ("Res: ");
         scanf ("%d", &res);
 
@@ -54,13 +72,25 @@ int main () {
             system ("cls");
             printf ("Ingrese el valor a ingresar en el nodo: ");
             scanf ("%d", &res);
-            agregarNodo(res);
+            agregarNodoPrincipio(res);
             break;
         
         case 2:
+            system ("cls");
+            printf ("Ingrese el valor a ingresar en el nodo: ");
+            scanf ("%d", &res);
+            agregarNodoFinal(head,res);
+        
+        case 3:
             printf ("Lista:\n");
             imprimirLista();
             break;
+        
+        case 4:
+            free(head);
+            system ("cls");
+            printf ("Nos vemos!");
+            exit(0);
         
         default:
             break;

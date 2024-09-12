@@ -79,7 +79,7 @@ void informeDia(int bolsasDia, int clientesFrecDia) {
     peluqueriaCaninaDiaTot = 0;
     ventaAlimentoDiaTot = 0;
     extrasDiaTot = 0;
-    clienteFrecDia = 0;
+    clientesFrecDia = 0;
     bolsasDia = 0;
 
     system ("pause");
@@ -125,6 +125,8 @@ void informeSemanal(float *rm1, float *rm2) {
     printf("Primer Rubro con mayor ingreso: Rubro(%d) - %.2f\n", rbDia, *rm1);
     printf("Segundo Rubro con mayor ingreso: Rubro(%d) - %.2f\n", rbDia2, *rm2);
     printf("Porcentaje de peluqueria canina sobre el total semanal: %.2f%%\n", aux2);
+    printf ("Clientes comunes totales: %d\n", clientesTot);
+    printf ("Clientes frecuentes totales: %d\n", clientesFrecTot);
     printf("Porcentaje de clientes frecuentes sobre el total de clientes: %.2f%%\n", aux3);
     system("pause");
     main();
@@ -272,6 +274,37 @@ void contadorClientesDia(int contadorDia) {
         clientesFrecTot += clienteFrecDia;
         clientesTot += clientesDia;
         break;
+    
+    case 2:
+    clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+    
+    case 3:
+        clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+    
+    case 4:
+        clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+    
+    case 5:
+        clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+    
+    case 6:
+        clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+    
+    case 7:
+        clientesFrecTot += clienteFrecDia;
+        clientesTot += clientesDia;
+        break;
+
     default:
         printf("DEBUG ERROR\n");
         break;
@@ -312,7 +345,7 @@ void menu(int *contador) {
             printf("No hay suficiente alimento para vender!\n");
             printf("Perdone las molestias!\n");
             system("pause");
-            menu(contador);
+            menu(*contador);
         }
         system("cls");
         printf("Kg Actuales: %d KG\n", kilosDia);

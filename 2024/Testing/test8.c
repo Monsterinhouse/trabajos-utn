@@ -47,7 +47,7 @@ void cargaOrd(struct nodo **L, struct datos D) {
             act = act->psig;
         }
 
-        if (act == NULL) {
+        if (ant == NULL) {
             nuevo->psig = act;
             *L = nuevo;
         }
@@ -56,9 +56,12 @@ void cargaOrd(struct nodo **L, struct datos D) {
             ant->psig = nuevo;
         }
     }
+
+    printf ("Elemento cargado satisfactoriamente!");
+    system ("pause");
 }
 
-void EliminarProd(struct Lista **L, int codigo) {
+void eliminarProd(struct Lista **L, int codigo) {
     struct nodo *ant;
     struct nodo *act;
 
@@ -76,7 +79,7 @@ void EliminarProd(struct Lista **L, int codigo) {
             act = act->psig;
         }
 
-        if (act == NULL) {
+        if (ant == NULL) {
             *L = act->psig;
             free (act);
         }
@@ -85,6 +88,51 @@ void EliminarProd(struct Lista **L, int codigo) {
             free (act);
         }
     }
+}
+
+void editarProd (struct nodo **L, int codigo) {
+    struct nodo *ant;
+    struct nodo *act;
+    struct nodo *mod;
+    int res = 0;
+
+    if (*L == NULL) {
+        printf ("La lista se encuentra vacia!");
+        system ("pause");
+    }
+    else {
+        ant = NULL;
+        act = *L;
+    }
+
+    while (act != NULL && act->data.codigo != codigo) {
+        ant = act;
+        act = act->psig;
+    }
+
+    printf ("===== CAMBIO DE DATOS ======\n");
+    printf ("Ingrese el nuevo nombre de producto: ");
+    fgets (mod->data.nombre, 50, stdin);
+    printf ("Ingrese el nuevo proveedr de producto: ");
+    fgets (mod->data.proveedor, 50, stdin);
+    printf ("Ingrese el nuevo codigo de producto: ");
+    scanf ("%d", &mod->data.codigo);
+    printf ("Ingrese el nuevo precio del producto: $");
+    scanf ("%f", mod->data.precio);
+    
+    if (ant == NULL) {
+        *L = act;
+        act = mod;
+    }
+    else {
+        act = mod;
+    }
+
+    printf ("Desea imprimir la lista modificada?\n1. Si\n2. No\nRes:");
+    scanf ("%d", &res);
+    if (res == 1) {
+        printLista(*L);
+    } else {menu(res);}
 }
 
 void printLista(struct nodo **L) {
@@ -117,7 +165,7 @@ int main () {
     system ("cls");
     int res = 0;
 
-    while (res != 6  ) {
+    while (res != -1 ) {
         menu(res);
         scanf ("%d", &res);
         switch (res) {
@@ -136,9 +184,16 @@ int main () {
         
         case 2:
             system ("cls");
+            printf ("Ingrese el codigo de producto a eliminar (8 digitos): ");
+            scanf ("%d", res);
+            eliminarProd(Lista, &res);
             break;
         
         case 3:
+            system ("cls");
+            printf ("Ingrese el codigo de producto a editar (8 digitos): ");
+            scanf ("%d", res);
+            editarProd(Lista, &res);
             system ("cls");
             break;
         

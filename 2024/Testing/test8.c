@@ -16,12 +16,12 @@ struct datos {
     char proveedor[50];
     int codigo [8];
     float precio;
-}; Productos;
+} Productos;
 
 struct nodo {
     struct datos data;
     struct nodo *psig;
-}; Nodo;
+} Nodo;
 
 struct nodo *Lista;
 
@@ -29,7 +29,7 @@ void crearLista(struct nodo **L) {
     *L = NULL;
 }
 
-void cargaOrd(struct nodo **L, struct datos D) {
+void cargaOrd(struct Lista **L, struct datos D) {
     struct nodo *nuevo = malloc(sizeof(Nodo));
     struct nodo *ant;
     struct nodo *act;
@@ -57,6 +57,7 @@ void cargaOrd(struct nodo **L, struct datos D) {
         }
     }
 
+    elem++;
     printf ("Elemento cargado satisfactoriamente!");
     system ("pause");
 }
@@ -86,11 +87,12 @@ void eliminarProd(struct Lista **L, int codigo) {
         else {
             ant->psig = act->psig;
             free (act);
+            elem--;
         }
     }
 }
 
-void editarProd (struct nodo **L, int codigo) {
+void editarProd (struct Lista **L, int codigo) {
     struct nodo *ant;
     struct nodo *act;
     struct nodo *mod;
@@ -179,14 +181,14 @@ int main () {
             scanf ("%d", &Lista->data.codigo);
             printf ("Ingrese el precio del producto: $");
             scanf ("%f", Lista->data.precio);
-            cargaOrd(Lista, Productos);
+            cargaOrd(&Lista, Productos);
             break;
         
         case 2:
             system ("cls");
             printf ("Ingrese el codigo de producto a eliminar (8 digitos): ");
-            scanf ("%d", res);
-            eliminarProd(Lista, &res);
+            scanf ("%d", &res);
+            eliminarProd(&Lista, &res);
             break;
         
         case 3:
@@ -214,6 +216,4 @@ int main () {
             break;
         }
     }
-    
-
 }
